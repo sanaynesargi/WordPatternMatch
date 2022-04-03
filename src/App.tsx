@@ -21,7 +21,6 @@ import {
   TIME,
 } from './constants/settings'
 import {
-  isWinningWord,
   //   solution,
   findFirstUnusedReveal,
   unicodeLength,
@@ -67,7 +66,7 @@ function App() {
   const [currentRowClass, setCurrentRowClass] = useState('')
   const [words, setWords] = useState([''])
   const [score, setScore] = useState(0)
-  const [isGameLost, setIsGameLost] = useState(false)
+  const [isGameLost, _] = useState(false)
   const [MAX_WORD_LENGTH, setMAX_WORD_LENGTH] = useState(0)
   const [isDarkMode, setIsDarkMode] = useState(
     localStorage.getItem('theme')
@@ -88,7 +87,7 @@ function App() {
 
   const [stats, setStats] = useState(() => loadStats())
 
-  const [isHardMode, setIsHardMode] = useState(
+  const [isHardMode, _] = useState(
     localStorage.getItem('gameMode')
       ? localStorage.getItem('gameMode') === 'hard'
       : false

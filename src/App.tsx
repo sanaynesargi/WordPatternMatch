@@ -66,7 +66,7 @@ function App() {
   const [currentRowClass, setCurrentRowClass] = useState('')
   const [words, setWords] = useState([''])
   const [score, setScore] = useState(0)
-  const [isGameLost, _] = useState(false)
+  const [isGameLost] = useState(false)
   const [MAX_WORD_LENGTH, setMAX_WORD_LENGTH] = useState(0)
   const [isDarkMode, setIsDarkMode] = useState(
     localStorage.getItem('theme')

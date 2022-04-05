@@ -2,7 +2,7 @@ import { generateEmojiGrid } from './share'
 
 const mockSolutionGetter = jest.fn()
 jest.mock('./words', () => ({
-  ...jest.requireActual('./words'),
+  ...(jest.requireActual('./words') as any),
   get solution() {
     return mockSolutionGetter()
   },

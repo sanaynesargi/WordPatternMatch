@@ -11,7 +11,7 @@ export const EmptyRow = ({ word }: Props) => {
     <div className="flex justify-center mb-1">
       {emptyCells.map((_, i) => {
         if (!word) {
-          return
+          return <Cell />
         }
 
         if (!word[i].includes('_')) {

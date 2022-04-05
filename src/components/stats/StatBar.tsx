@@ -1,6 +1,5 @@
 import { GameStats } from '../../lib/localStorage'
 import {
-  TOTAL_TRIES_TEXT,
   SUCCESS_RATE_TEXT,
   CURRENT_STREAK_TEXT,
   BEST_STREAK_TEXT,

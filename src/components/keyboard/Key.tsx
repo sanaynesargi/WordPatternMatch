@@ -3,7 +3,6 @@ import classnames from 'classnames'
 import { CharStatus } from '../../lib/statuses'
 import { REVEAL_TIME_MS } from '../../constants/settings'
 import { getStoredIsHighContrastMode } from '../../lib/localStorage'
-import { workerData } from 'worker_threads'
 
 type Props = {
   children?: ReactNode

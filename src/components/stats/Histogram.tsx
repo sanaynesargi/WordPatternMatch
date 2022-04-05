@@ -14,7 +14,7 @@ export const Histogram = ({ gameStats, numberOfGuessesMade }: Props) => {
     <div className="columns-1 justify-left m-2 text-sm dark:text-white">
       {winDistribution.map((value, i) => {
         if (i === 7) {
-          return
+          return <> </>
         }
         return (
           <Progress

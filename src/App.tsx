@@ -22,7 +22,6 @@ import {
 } from './constants/settings'
 import {
   //   solution,
-  findFirstUnusedReveal,
   unicodeLength,
 } from './lib/words'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
@@ -87,12 +86,6 @@ function App() {
 
   const [stats, setStats] = useState(() => loadStats())
 
-  const [isHardMode, _] = useState(
-    localStorage.getItem('gameMode')
-      ? localStorage.getItem('gameMode') === 'hard'
-      : false
-  )
-
   useEffect(() => {
     // if no game state on load,
     // show the user the how-to info modal
@@ -148,7 +141,7 @@ function App() {
         setLoaded(true)
         setFormattedWord(res.response.word)
       })
-  }, [])
+  }, [MAX_WORD_LENGTH, words])
 
   useEffect(() => {
     if (isDarkMode) {
@@ -210,7 +203,7 @@ function App() {
         setIsStatsModalOpen(true)
       }, GAME_LOST_INFO_DELAY)
     }
-  }, [isGameWon, isGameLost, showSuccessAlert])
+  }, [isGameWon, isGameLost, showSuccessAlert, MAX_WORD_LENGTH])
 
   const onChar = (value: string) => {
     if (
@@ -281,17 +274,6 @@ function App() {
       })
     }
 
-    // enforce hard mode - all guesses must contain all previously revealed letters
-    if (isHardMode) {
-      const firstMissingReveal = findFirstUnusedReveal(currentGuess, guesses)
-      if (firstMissingReveal) {
-        setCurrentRowClass('jiggle')
-        return showErrorAlert(firstMissingReveal, {
-          onClose: clearCurrentRowClass,
-        })
-      }
-    }
-
     setIsRevealing(true)
     setScore(score + 1)
     // turn this back off after all
@@ -300,7 +282,7 @@ function App() {
       setIsRevealing(false)
     }, REVEAL_TIME_MS * MAX_WORD_LENGTH)
 
-    const winningWord = score == 5
+    const winningWord = score === 5
 
     if (
       unicodeLength(currentGuess) === MAX_WORD_LENGTH &&
@@ -392,7 +374,7 @@ function App() {
               handleShareToClipboard={() =>
                 showSuccessAlert(GAME_COPIED_MESSAGE)
               }
-              isHardMode={isHardMode}
+              isHardMode={false}
               isDarkMode={isDarkMode}
               isHighContrastMode={isHighContrastMode}
               numberOfGuessesMade={score}
@@ -400,7 +382,7 @@ function App() {
             <SettingsModal
               isOpen={isSettingsModalOpen}
               handleClose={() => setIsSettingsModalOpen(false)}
-              isHardMode={isHardMode}
+              isHardMode={false}
               handleHardMode={() => {}}
               isDarkMode={isDarkMode}
               handleDarkMode={handleDarkMode}

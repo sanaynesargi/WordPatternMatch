@@ -110,7 +110,10 @@ function App() {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     }
-    fetch('http://localhost:8080/words', requestOptions)
+    fetch(
+      'https://uxajtk91jk.execute-api.us-east-1.amazonaws.com/dev/words',
+      requestOptions
+    )
       .then((response) => response.json())
       .then((res) => {
         setWords(res.response.words)

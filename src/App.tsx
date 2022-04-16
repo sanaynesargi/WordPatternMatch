@@ -145,7 +145,7 @@ function App() {
         setLoaded(true)
         setFormattedWord(res.word)
       })
-  }, [])
+  }, [MAX_WORD_LENGTH, words])
 
   useEffect(() => {
     if (isDarkMode) {

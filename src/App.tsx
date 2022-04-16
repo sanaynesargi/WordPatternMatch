@@ -108,7 +108,7 @@ function App() {
     const loadedIndex = loadIndexFromLocalStorage()
     const requestOptions = {
       method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
+      // headers: { 'Content-Type': 'application/json' },
     }
     fetch(
       'https://uxajtk91jk.execute-api.us-east-1.amazonaws.com/dev/words',

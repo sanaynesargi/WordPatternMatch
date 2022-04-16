@@ -123,7 +123,7 @@ function App() {
 
         if (!words) return
         if (res?.day !== loadedIndex?.day) {
-          console.log(res.day === loadedIndex.day)
+          console.log(res.day === loadedIndex?.day)
           setIsGameWon(false)
           setTimerDone(false)
           clearGuesses()

@@ -112,17 +112,18 @@ function App() {
     }
     fetch(
       'https://uxajtk91jk.execute-api.us-east-1.amazonaws.com/dev/words',
+      //'http://localhost:8080/words',
       requestOptions
     )
       .then((response) => response.json())
       .then((res) => {
-        setWords(res.response.words)
-        setMAX_WORD_LENGTH(res.response.word.length)
-        console.log(res.response.words, words, MAX_WORD_LENGTH)
+        console.log(res, MAX_WORD_LENGTH)
+        setWords(res.words)
+        setMAX_WORD_LENGTH(res.word.length)
 
         if (!words) return
-        if (res.response?.day !== loadedIndex?.day) {
-          console.log(res.response.day === loadedIndex.day)
+        if (res?.day !== loadedIndex?.day) {
+          console.log(res.day === loadedIndex.day)
           setIsGameWon(false)
           setTimerDone(false)
           clearGuesses()
@@ -140,11 +141,11 @@ function App() {
             setTimerDone(false)
           }
         }
-        saveIndexToLocalStorage(res.response.day)
+        saveIndexToLocalStorage(res.day)
         setLoaded(true)
-        setFormattedWord(res.response.word)
+        setFormattedWord(res.word)
       })
-  }, [MAX_WORD_LENGTH, words])
+  }, [])
 
   useEffect(() => {
     if (isDarkMode) {
